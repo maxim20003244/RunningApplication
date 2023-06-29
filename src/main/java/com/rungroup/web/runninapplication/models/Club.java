@@ -24,6 +24,7 @@ public class Club {
     private Long id;
     private String title;
     private String content;
+    private String photoUrl;
     private LocalDateTime createOn;
     private LocalDateTime updateOn;
 
