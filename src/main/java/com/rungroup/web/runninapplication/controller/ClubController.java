@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -37,4 +38,18 @@ public class ClubController {
         clubService.saveClub(club);
         return "redirect:/clubs";
         }
+
+        @GetMapping("/clubs/{clubId}/edit")
+    public String editClubForm (@PathVariable("clubId") long clubId,Model model){
+       ClubDto club = clubService.findClubsById(clubId);
+       model.addAttribute("club",club);
+        return "clubs-edit";
+        }
+
+        @PostMapping("/clubs/{clubId}/edit")
+    public String updateClub(@PathVariable("clubId") long clubId, ClubDto clubDto){
+        clubDto.setId(clubId);
+        clubService.updateClub(clubDto);
+        return "redirect:/clubs";
+    }
 }
