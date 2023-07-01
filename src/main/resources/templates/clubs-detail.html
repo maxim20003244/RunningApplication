@@ -31,7 +31,7 @@
               <div class="small text-muted" th:text="${club.createOn}"></div>
               <h2 class="card-title">About this running club</h2>
               <p class="card-text" th:text="${club.content}"></p>
-              <a class="btn btn-primary" >Delete</a>
+              <a class="btn btn-primary "th:href="@{/clubs/{clubId}/delete(clubId=${club.id})}" >Delete</a>
             </div>
           </div>
           <!-- Nested row for non-featured blog posts-->
@@ -44,7 +44,7 @@
                   <div class="small text-muted">January 1, 2023</div>
                   <h2 class="card-title h4">Event Title</h2>
                   <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla.</p>
-                  <a class="btn btn-primary" href="#!">Read more →</a>
+                  <a class="btn btn-primary">Read more →</a>
                 </div>
               </div>
               <!-- Blog post-->

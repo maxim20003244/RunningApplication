@@ -17,6 +17,14 @@ layout:decorate="~{layout}">
             </div>
 
                 <div class="row gx-7">
+                    <div>
+                        <form th:action="@{/clubs/search}" class="form-inline my-2 my-lg-0 mb-3">
+                            <input name="query" class="form-control me-sm-2 mb-5" type="search"
+                                   placeholder="Searching running clubs"
+                                   aria-label="Search">
+
+                        </form>
+                    </div>
                     <div th:each=" club : ${clubs}"   class="col-lg-6 mb-2">
                         <div class="position-relative mb-3">
                         <img class="img-fluid rounded-3 mb-3" th:src="${club.photoUrl}" alt="..." />
