@@ -21,7 +21,7 @@ public class ClubController {
     public ClubController(ClubService clubService) {
         this.clubService = clubService;
     }
-    @GetMapping("/clubs")
+    @GetMapping(value = {"","/","/clubs","/home"})
     public String listClubs(Model model){
         List<ClubDto> clubs= clubService.findClubs();
         model.addAttribute("clubs",clubs);
@@ -50,6 +50,14 @@ public class ClubController {
        ClubDto club = clubService.findClubsById(clubId);
        model.addAttribute("club",club);
         return "clubs-edit";
+        }
+
+        @GetMapping("/clubs/{clubId}")
+        public String clubDetails(@PathVariable("clubId") long clubId,Model model){
+        ClubDto clubDto = clubService.findClubsById(clubId);
+        model.addAttribute("club", clubDto);
+        return "clubs-detail";
+
         }
 
         @PostMapping("/clubs/{clubId}/edit")

@@ -12,7 +12,7 @@ layout:decorate="~{layout}">
     <section layout:fragment="body" class="py-5">
         <div  class="container px-5 my-5">
             <div class="text-center mb-5">
-                <h1 class="fw-bolder">Our Work</h1>
+                <h1 class="fw-bolder">Find Running Clubs</h1>
                 <p class="lead fw-normal text-muted mb-0">Runners found in your area</p>
             </div>
 
@@ -22,6 +22,7 @@ layout:decorate="~{layout}">
                         <img class="img-fluid rounded-3 mb-3" th:src="${club.photoUrl}" alt="..." />
                         <a th:text="${club.title}" class="h3 fw-bolder text-decoration-none link-dark " href="#!"></a>
                     </div>
+                    <a class="btn btn-primary" th:href="@{/clubs/{clubId}(clubId=${club.id})}">View</a>
                     <a class="btn btn-primary" th:href="@{/clubs/{clubId}/edit(clubId=${club.id})}">Edit</a>
                 </div>
             </div>
