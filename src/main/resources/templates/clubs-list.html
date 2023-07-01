@@ -4,7 +4,7 @@
 layout:decorate="~{layout}">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Club List</title>
 </head>
 <body class="d-flex flex-column h-100">
 <main class="flex-shrink-0">
@@ -19,15 +19,14 @@ layout:decorate="~{layout}">
 
                 <div class="row gx-5">
                     <div th:each=" club : ${clubs}"   class="col-lg-6">
-                        <img class="img-fluid rounded-3 mb-3" src=/assets/running.jpeg alt="..." />
+                        <img class="img-fluid rounded-3 mb-3" th:src="${club.photoUrl}" alt="..." />
                         <a th:text="${club.title}" class="h3 fw-bolder text-decoration-none link-dark stretched-link" href="#!"></a>
                     </div>
                 </div>
             </div>
-        </div>
+
     </section>
 </main>
-
 
 </body>
 </html>
