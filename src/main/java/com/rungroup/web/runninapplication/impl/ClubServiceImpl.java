@@ -4,10 +4,11 @@ import com.rungroup.web.runninapplication.dto.ClubDto;
 import com.rungroup.web.runninapplication.models.Club;
 import com.rungroup.web.runninapplication.repository.ClubRepository;
 import com.rungroup.web.runninapplication.service.ClubService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
+@Service
 public class ClubServiceImpl implements ClubService {
     private final ClubRepository clubRepository;
 
