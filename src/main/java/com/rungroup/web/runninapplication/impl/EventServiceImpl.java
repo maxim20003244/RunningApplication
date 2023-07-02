@@ -8,6 +8,12 @@ import com.rungroup.web.runninapplication.repository.EventRepository;
 import com.rungroup.web.runninapplication.service.EventService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static com.rungroup.web.runninapplication.mappper.EventMapper.mapToEvent;
+import static com.rungroup.web.runninapplication.mappper.EventMapper.mapToEventDto;
+
 @Service
 public class EventServiceImpl implements EventService {
 
@@ -28,16 +34,11 @@ public class EventServiceImpl implements EventService {
 
 
     }
-    private Event mapToEvent(EventDto eventDto){
-        return Event.builder()
-                .id(eventDto.getId())
-                .name(eventDto.getName())
-                .startTime(eventDto.getStartTime())
-                .endTime(eventDto.getEndTime())
-                .type(eventDto.getType())
-                .photoUrl(eventDto.getPhotoUrl())
-                .createOn(eventDto.getCreateOn())
-                .updateTime(eventDto.getUpdateTime())
-                .build();
+
+    @Override
+    public List<EventDto> findAllEvents() {
+        List<Event> events = eventRepository.findAll();
+        return events.stream().map(event -> mapToEventDto(event)).collect(Collectors.toList());
     }
+
 }
