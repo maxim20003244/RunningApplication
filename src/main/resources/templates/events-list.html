@@ -23,7 +23,7 @@
             <img class="card-img-top" th:src="${event.photoUrl}" alt="..." />
             <a th:text="${event.name}" class="h3 fw-bolder text-decoration-none link-dark " href="#!"></a>
           </div>
-          <a class="btn btn-primary" >View</a>
+          <a class="btn btn-primary" th:href="@{/events/{eventId}(eventId=${event.id})}">View</a>
           <a class="btn btn-primary" >Edit</a>
         </div>
       </div>
