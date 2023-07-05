@@ -6,10 +6,11 @@ import com.rungroup.web.runninapplication.models.UserEntity;
 import com.rungroup.web.runninapplication.repository.RoleRepository;
 import com.rungroup.web.runninapplication.repository.UserRepository;
 import com.rungroup.web.runninapplication.service.UserService;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-
+@Service
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
@@ -30,5 +31,16 @@ public class UserServiceImpl implements UserService {
         user.setRoles(Arrays.asList(role));
         userRepository.save(user);
 
+    }
+
+    @Override
+    public UserEntity findByEmail(String email) {
+      return   userRepository.findByEmail(email);
+
+    }
+
+    @Override
+    public UserEntity findByUserName(String userName) {
+        return userRepository.findByUsername(userName);
     }
 }
