@@ -1,14 +1,10 @@
 package com.rungroup.web.runninapplication.dto;
 
-import com.rungroup.web.runninapplication.models.Event;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.rungroup.web.runninapplication.models.UserEntity;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -26,4 +22,5 @@ public class ClubDto {
     private LocalDateTime createOn;
     private LocalDateTime updateOn;
     private List<EventDto> events;
+    private UserEntity createdBy;
 }
