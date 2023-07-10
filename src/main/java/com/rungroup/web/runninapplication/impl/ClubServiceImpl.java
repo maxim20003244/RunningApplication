@@ -57,7 +57,7 @@ public class ClubServiceImpl implements ClubService {
     @Override
     public void updateClub(ClubDto clubDto) {
         String userName  =  SecurityUtil.getSessionUser();
-        UserEntity user = userRepository.findByUsername(userName);
+        UserEntity user = userRepository.findByEmail(userName);
         Club club = mapToClub(clubDto);
         club.setCreatedBy(user);
         clubRepository.save(club);

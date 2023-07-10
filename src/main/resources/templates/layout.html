@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-                xmlns:layout ="http://www.ultraq.net.nz/thymeleaf/layout">
+                xmlns:layout ="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
 <head>
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/boostrap-icons@1.5.0/front.bootstrap-icons.css" rel="stylesheet">
@@ -19,8 +21,9 @@
                 <li class="nav-item"><a class="nav-link" th:href="@{/}">Home</a></li>
                 <li class="nav-item"><a class="nav-link" th:href="@{/clubs}">Find Clubs</a></li>
                 <li class="nav-item"><a class="nav-link" th:href="@{/event}">Find Events</a></li>
-                <li class="nav-item"><a class="nav-link" href="pricing.html">Directory</a></li>
-                <li class="nav-item dropdown">
+                <li sec:authorize="!isAuthenticated()" class="nav-item"  ><a class="nav-link" th:href="@{/login}">Login</a></li>
+                <li  sec:authorize="!isAuthenticated()" class="nav-item"><a class="nav-link" th:href="@{/register}">Register</a></li>
+                <li  sec:authorize="isAuthenticated()" class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Welcome</a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
                         <li><a class="dropdown-item" th:href="@{/login}">Login</a></li>

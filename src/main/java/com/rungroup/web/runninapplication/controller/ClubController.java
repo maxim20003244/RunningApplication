@@ -2,7 +2,10 @@ package com.rungroup.web.runninapplication.controller;
 
 import com.rungroup.web.runninapplication.dto.ClubDto;
 import com.rungroup.web.runninapplication.models.Club;
+import com.rungroup.web.runninapplication.models.UserEntity;
+import com.rungroup.web.runninapplication.security.SecurityUtil;
 import com.rungroup.web.runninapplication.service.ClubService;
+import com.rungroup.web.runninapplication.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,13 +17,22 @@ import java.util.List;
 @Controller
 public class ClubController {
     private final ClubService clubService;
+    private final UserService userService;
 
-    public ClubController(ClubService clubService) {
+    public ClubController(ClubService clubService, UserService userService) {
         this.clubService = clubService;
+        this.userService = userService;
     }
     @GetMapping(value = {"","/","/clubs","/home"})
     public String listClubs(Model model){
+        UserEntity user = new UserEntity();
         List<ClubDto> clubs= clubService.findClubs();
+        String username = SecurityUtil.getSessionUser();
+        if(username!=null){
+            user = userService.findByEmail(username);
+            model.addAttribute("user",user);
+        }
+        model.addAttribute("user",user);
         model.addAttribute("clubs",clubs);
         return "clubs-list";
     }
@@ -65,6 +77,13 @@ public class ClubController {
 
         @GetMapping("/clubs/{clubId}")
         public String clubDetails(@PathVariable("clubId") long clubId,Model model){
+        UserEntity user = new UserEntity();
+            String username = SecurityUtil.getSessionUser();
+            if(username!=null){
+                user = userService.findByEmail(username);
+                model.addAttribute("user",user);
+            }
+            model.addAttribute("user",user);
         ClubDto clubDto = clubService.findClubsById(clubId);
         model.addAttribute("club", clubDto);
         return "clubs-detail";
